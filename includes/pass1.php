@@ -115,7 +115,7 @@ function pass1($file, $namespace, $conditional, $ast, $current_scope, $current_c
 									'interfaces' => [],
 									'methods'	 => [] ];
 
-				$classes[$lc]['interfaces'] = array_merge($classes[$lc]['interfaces'], node_namelist($file, $ast->children[1], $namespace));
+				$classes[$lc]['interfaces'] = expand_interfaces($classes[$lc]['interfaces'], node_namelist($file, $ast->children[1], $namespace));
 				$summary['classes']++;
 				break;
 

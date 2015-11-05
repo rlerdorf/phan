@@ -587,6 +587,19 @@ function merge_type($existing, $add) {
 	return $existing;
 }
 
+function expand_interfaces($interfaces, $new) {
+    global $classes;
+
+	$interfaces = array_merge($interfaces, $new);
+	foreach($new as $interface) {
+		$node = $classes[strtolower($interface)];
+		if(!empty($node['interfaces'])) {
+            $interfaces = expand_interfaces($interfaces, $node['interfaces']);
+		}
+	}
+    return $interfaces;
+}
+
 function add_var_scope(string $cs, string $name, string $type, $replace_type = false) {
 	global $scope;
 

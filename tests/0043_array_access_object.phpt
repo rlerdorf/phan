@@ -15,5 +15,30 @@ class B implements ArrayAccess {
 
 $b = new B;
 if($b[1]) { }
+
+interface I extends ArrayAccess { }
+
+class C implements I {
+    function offsetExists($offset) { }
+    function offsetGet($offset) { }
+    function offsetSet($offset,$value) { }
+    function offsetUnset($offset) { }
+}
+
+class D {
+    static function withB(B $b) {
+        if($b[1]) { }
+    }
+
+    static function withC(C $c) {
+        if($c[1]) { }
+    }
+}
+
+D::withB(new B);
+D::withC(new C);
+
+$c = new C;
+if ($c[1]) { }
 --EXPECTF--
 %s:4 TypeError Suspicious array access to a
