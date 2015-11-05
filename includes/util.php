@@ -594,7 +594,7 @@ function expand_interfaces($interfaces, $new) {
 	foreach($new as $interface) {
 		$node = $classes[strtolower($interface)];
 		if(!empty($node['interfaces'])) {
-            $interfaces = expand_interfaces($interfaces, $node['interfaces']);
+			$interfaces = expand_interfaces($interfaces, $node['interfaces']);
 		}
 	}
     return $interfaces;
