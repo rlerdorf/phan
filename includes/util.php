@@ -592,6 +592,7 @@ function expand_interfaces($interfaces, $new) {
 
 	$interfaces = array_merge($interfaces, $new);
 	foreach($new as $interface) {
+		if(empty($classes[strtolower($interface)])) continue;
 		$node = $classes[strtolower($interface)];
 		if(!empty($node['interfaces'])) {
 			$interfaces = expand_interfaces($interfaces, $node['interfaces']);
