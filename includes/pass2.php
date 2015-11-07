@@ -412,7 +412,6 @@ function pass2($file, $namespace, $ast, $current_scope, $parent_node=null, $curr
 					if(!$found) Log::err(Log::EUNDEF, "call to undefined function {$func_name}()", $file, $ast->lineno);
 					else {
 						// Ok, the function exists, but are we calling it correctly?
-						if($found instanceof ReflectionType) echo "oops at $file:{$ast->lineno}\n";  // DEBUG
 						arg_check($file, $namespace, $ast, $func_name, $found, $current_scope, $current_class);
 						if($found['file'] != 'internal') {
 							// re-check the function's ast with these args
