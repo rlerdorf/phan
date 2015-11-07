@@ -288,12 +288,24 @@ function node_paramlist($file, $node, &$req, &$opt, $dc, $namespace) {
 	if($node instanceof \ast\Node) {
 		$result = [];
 		$i = 0;
+		$null_opt = false;
 		foreach($node->children as $param_node) {
 			$result[] = node_param($file, $param_node, $dc, $i, $namespace);
 			if($param_node->children[2]===null) {
-				if($opt) Log::err(Log::EPARAM, "required arg follows optional", $file, $node->lineno);
+				if($opt && !$null_opt) {
+					Log::err(Log::EPARAM, "required arg follows optional", $file, $node->lineno);
+				}
 				$req++;
-			} else $opt++;
+			} else {
+				if($param_node->children[2] instanceof \ast\Node && $param_node->children[2]->kind == \ast\AST_CONST &&
+				  ($param_node->children[2]->children[0] instanceof \ast\Node && $param_node->children[2]->children[0]->kind == \ast\AST_NAME) &&
+				  ($param_node->children[2]->children[0]->children[0] === 'null')) {
+					$null_opt = true;
+				} else {
+					$null_opt = false;
+				}
+				$opt++;
+			}
 			$i++;
 		}
 		return $result;
