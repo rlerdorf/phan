@@ -407,11 +407,7 @@ function node_func($file, $conditional, $node, $current_scope, $current_class, $
 			}
 			if(!empty($dc['vars'])) {
 				foreach($dc['vars'] as $var) {
-					if(empty($scope[$current_scope]['vars'][$var['name']])) {
-						$scope[$current_scope]['vars'][$var['name']] = ['type'=>$var['type'], 'tainted'=>false, 'tainted_by'=>''];
-					} else {
-						add_type($current_scope, $var['name'], $var['type']);
-					}
+					add_var_scope($current_scope, $var['name'], $var['type']);
 				}
 			}
 		}

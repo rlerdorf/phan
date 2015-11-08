@@ -162,10 +162,10 @@ function pass2($file, $namespace, $ast, $current_scope, $parent_node=null, $curr
 					}
 				} else {
 					// value
-					add_var_scope($current_scope, var_name($ast->children[1]), '', true);
+					add_var_scope($current_scope, var_name($ast->children[1]), '');
 					// key
 					if(!empty($ast->children[2])) {
-						add_var_scope($current_scope, var_name($ast->children[2]), '', true);
+						add_var_scope($current_scope, var_name($ast->children[2]), '');
 					}
 				}
 				break;
@@ -1011,6 +1011,12 @@ function arglist_type_check($file, $namespace, $arglist, $func, $current_scope, 
 			}
 		}
 
+		// If arg is optional, allow null to skip it
+		if($arg_type==="null" &&
+		   (($func['file']=='internal' && substr($param['name'],-1)=='=') ||
+		   ($func['file']!='internal' && array_key_exists('def', $param)))) {
+			continue;
+		}
 		if(!type_check(all_types($arg_type), all_types($param['type']), $namespace)) {
 			if(!empty($param['name'])) $paramstr = '('.trim($param['name'],'&=').')';
 			else $paramstr = '';
