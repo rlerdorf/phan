@@ -1060,7 +1060,7 @@ return [
 'date_sunrise' => ['', 'time'=>'', 'format='=>'int', 'latitude='=>'float', 'longitude='=>'float', 'zenith='=>'float', 'gmt_offset='=>'float'],
 'date_sunset' => ['', 'time'=>'', 'format='=>'int', 'latitude='=>'float', 'longitude='=>'float', 'zenith='=>'float', 'gmt_offset='=>'float'],
 'DateTime::add' => ['DateTime', 'interval'=>'dateinterval'],
-'DateTime::__construct' => ['DateTime', 'time='=>'string', 'timezone='=>'datetimezone'],
+'DateTime::__construct' => ['DateTime', 'time='=>'string|null', 'timezone='=>'datetimezone|null'],
 'DateTime::createFromFormat' => ['DateTime', 'format'=>'string', 'time'=>'string', 'timezone='=>'datetimezone'],
 'DateTime::diff' => ['DateInterval', 'datetime2'=>'datetime', 'absolute='=>'bool'],
 'DateTime::format' => ['string|bool', 'format'=>'string'],
