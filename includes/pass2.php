@@ -1358,8 +1358,8 @@ function node_type($file, $namespace, $node, $current_scope, $current_class, &$t
 					if($left=='int' && $right == 'int') return 'int';
 					if(($left=='int' || $left=='float') && ($right=='int' || $right=='float')) return 'float';
 
-					$left_is_array = (!empty(generics($left)) && empty(nongenerics($left)));
-					$right_is_array = (!empty(generics($right)) && empty(nongenerics($right)));
+					$left_is_array = (!empty(generics($left)) && (empty(nongenerics($left)) || nongenerics($left)=='array'));
+					$right_is_array = (!empty(generics($right)) && (empty(nongenerics($right)) || nongenerics($right)=='array'));
 
 					if($left_is_array && !type_check($right, 'array')) {
 						Log::err(Log::ETYPE, "invalid operator: left operand is array and right is not", $file, $node->lineno);
