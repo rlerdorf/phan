@@ -29,7 +29,7 @@ add_internal($internal_classes);
 $cnt = count($files);
 // Then the user-defined
 foreach($files as $i=>$file) {
-	$ast = \ast\parse_file($file, $version=10);
+	$ast = \ast\parse_file($file, $version=15);
 	if($dump_ast) echo $file."\n".str_repeat("\u{00AF}",strlen($file))."\n".ast_dump($ast)."\n";
 	else {
 		if($progress_bar) progress("pass1", $i/$cnt);
@@ -61,7 +61,7 @@ $scope['global'] = [ 'vars'=>['_GET'=>['type'=>'array', 'tainted'=>true, 'tainte
 
 // The second pass looks at the execution blocks themselves
 foreach($files as $i=>$file) {
-	$ast = \ast\parse_file($file, $version=10);
+	$ast = \ast\parse_file($file, $version=15);
 	if($progress_bar) progress("pass2", $i/$cnt);
 	pass2($file, '', $ast, 'global');
 }

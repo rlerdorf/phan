@@ -147,6 +147,7 @@ function pass1($file, $namespace, $conditional, $ast, $current_scope, $current_c
 				if(!empty($ast->docComment)) $dc = parse_doc_comment($ast->docComment);
 
 				foreach($ast->children as $i=>$node) {
+					if(!empty($node->docComment)) $dc = parse_doc_comment($node->docComment);
 					$classes[$lc]['properties'][$node->children[0]] = [ 'flags'=>$ast->flags,
 																	    'name'=>$node->children[0],
 																	    'lineno'=>$node->lineno];
