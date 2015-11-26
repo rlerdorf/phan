@@ -6524,7 +6524,7 @@ return [
 'parse_url' => ['', 'url'=>'string', 'url_component='=>'int'],
 'passthru' => ['', 'command'=>'string', '&return_value='=>'int'],
 'password_get_info' => ['array', 'hash'=>'string'],
-'password_hash' => ['string', 'password'=>'string', 'algo'=>'int', 'options'=>'array'],
+'password_hash' => ['string', 'password'=>'string', 'algo'=>'int', 'options='=>'array'],
 'password_make_salt' => ['bool', 'password'=>'string', 'hash'=>'string'],
 'password_needs_rehash' => ['bool', 'hash'=>'string', 'algo'=>'int', 'options='=>'array'],
 'password_verify' => ['bool', 'password'=>'string', 'hash'=>'string'],
