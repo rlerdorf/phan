@@ -297,7 +297,7 @@ that it is actually returning the passed in `string` instead of an `int` as decl
 
 ## How you can help
 
-This is written in PHP specifically to encourage contributions. I know my stream-of-conciousness coding
+This is written in PHP specifically to encourage contributions. I know my stream-of-consciousness coding
 style can be a bit hard to sort through. The bulk of this was written quickly over a weekend with
 almost no re-factoring and cleanup yet. Please give me a hand with that.
 
